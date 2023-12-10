@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { RainSenzorService } from './rain-senzor.service';
+import { RainSenzorModel } from './rain-senzor.model';
 
 @Component({
   selector: 'app-rain-senzor',
@@ -7,17 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rain-senzor.component.css']
 })
 export class RainSenzorComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private rainSenzorService: RainSenzorService) { }
+
+  public levelSenzorLastValue: string;
 
   ngOnInit(): void {
-    this.getDataFromSensor();
+    this.getDataFromRainSensor();
   }
 
-  public senzorData;
+  public getDataFromRainSensor() {
+    this.rainSenzorService
+      .getRainSenzorData()
+      .subscribe((senzorData) => {
+        let levelSenzorValues: string[] = [];
 
-  public getDataFromSensor() {
-    this.http.get('https://thingspeak.com/channels/2354728/field/4.json').subscribe((data: any) => {
-      this.senzorData = data.feeds;
-    });
+        senzorData.feeds.forEach((feed: RainSenzorModel) => {
+          levelSenzorValues.push(feed.field4);
+        });
+        this.levelSenzorLastValue =
+          levelSenzorValues[levelSenzorValues.length - 1];
+      });
   }
 }

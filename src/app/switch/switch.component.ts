@@ -1,23 +1,33 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SwitchService } from './switch.service';
+import { SwitchModel } from './switch.model';
 
 @Component({
   selector: 'app-switch',
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.css']
 })
-export class SwitchComponent {
-  constructor(private http: HttpClient) {}
+export class SwitchComponent implements OnInit {
+  constructor(private switchService: SwitchService) { }
+
+  public switchLastValue: string;
 
   ngOnInit(): void {
-    this.getDataFromSensor();
+    this.getDataFromSwitch();
   }
 
-  public senzorData;
+  public getDataFromSwitch() {
+    this.switchService
+      .getSwitchData()
+      .subscribe((data) => {
+        let switchValues: string[] = [];
 
-  public getDataFromSensor() {
-    this.http.get('https://thingspeak.com/channels/2354728/field/5.json').subscribe((data: any) => {
-      this.senzorData = data.feeds;
-    });
+        data.feeds.forEach((feed: SwitchModel) => {
+          switchValues.push(feed.field5);
+        });
+        this.switchLastValue =
+        switchValues[switchValues.length - 1];
+      });
   }
 }

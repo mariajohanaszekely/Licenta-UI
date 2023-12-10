@@ -1,0 +1,9 @@
+.italic-red {
+    font-style: italic;
+    color: red;
+}
+
+.bold-blue {
+    font-weight: bold;
+    color: blue;
+}

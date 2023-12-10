@@ -1,1 +1,7 @@
-<h1> Switch </h1>
+<h1 class="italic-red">Car closed/opened - switch</h1>
+
+<h1 class="bold-blue">{{ switchLastValue }}</h1>
+
+<img *ngIf="+switchLastValue === 0" src="/assets/images/car-closed.jpg" />
+
+<img *ngIf="+switchLastValue === 1" src="/assets/images/car-opened.png" />

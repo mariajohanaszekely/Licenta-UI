@@ -1,23 +1,34 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UmiditySensorService } from './umidity-sensor.service';
+import { UmiditySensorModel } from './umidity-sensor.model';
 
 @Component({
   selector: 'app-umidity-sensor',
   templateUrl: './umidity-sensor.component.html',
   styleUrls: ['./umidity-sensor.component.css']
 })
-export class UmiditySensorComponent {
-  constructor(private http: HttpClient) {}
+export class UmiditySensorComponent implements OnInit {
+  constructor(private umiditySensorService: UmiditySensorService) { }
+
+  public sensorLastValue: string;
 
   ngOnInit(): void {
-    this.getDataFromSensor();
+    this.getDataFromSwitch();
   }
 
-  public senzorData;
+  public getDataFromSwitch() {
+    this.umiditySensorService
+      .getUmiditySensorData()
+      .subscribe((data) => {
+        let sensorValues: string[] = [];
 
-  public getDataFromSensor() {
-    this.http.get('https://thingspeak.com/channels/2354728/field/2.json').subscribe((data: any) => {
-      this.senzorData = data.feeds;
-    });
+        data.feeds.forEach((feed: UmiditySensorModel) => {
+          sensorValues.push(feed.field2);
+        });
+        this.sensorLastValue =
+          sensorValues[sensorValues.length - 1];
+      });
   }
 }
+

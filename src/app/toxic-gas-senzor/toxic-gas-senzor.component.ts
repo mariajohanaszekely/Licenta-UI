@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ToxicGasSensorService } from './toxic-gas-senzor.service';
+import { ToxicGasSensorModel } from './toxic-gas-senzor.model';
 
 @Component({
   selector: 'app-toxic-gas-senzor',
@@ -7,17 +9,27 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./toxic-gas-senzor.component.css']
 })
 export class ToxicGasSenzorComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private toxicGasSensorService: ToxicGasSensorService) { }
+
+  public sensorLastValue: string;
 
   ngOnInit(): void {
-    this.getDataFromSensor();
+    this.getToxicGasSensorData();
   }
 
-  public senzorData;
+  public getToxicGasSensorData() {
+    this.toxicGasSensorService
+      .getToxicGasSensorData()
+      .subscribe((data) => {
+        let sensorValues: string[] = [];
 
-  public getDataFromSensor() {
-    this.http.get('https://thingspeak.com/channels/2354728/field/6.json').subscribe((data: any) => {
-      this.senzorData = data.feeds;
-    });
+        data.feeds.forEach((feed: ToxicGasSensorModel) => {
+          sensorValues.push(feed.field6);
+        });
+        this.sensorLastValue =
+          sensorValues[sensorValues.length - 1];
+      });
   }
 }
+
+

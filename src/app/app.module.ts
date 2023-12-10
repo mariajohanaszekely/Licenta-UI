@@ -9,6 +9,12 @@ import { TempSensorComponent } from './temp-sensor/temp-sensor.component';
 import { UmiditySensorComponent } from './umidity-sensor/umidity-sensor.component';
 import { SwitchComponent } from './switch/switch.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LevelSenzorService } from './level-senzor/level-senzor.service';
+import { RainSenzorService } from './rain-senzor/rain-senzor.service';
+import { SwitchService } from './switch/switch.service';
+import { TempSensorService } from './temp-sensor/temp-sensor.service';
+import { UmiditySensorService } from './umidity-sensor/umidity-sensor.service';
+import { ToxicGasSensorService } from './toxic-gas-senzor/toxic-gas-senzor.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [LevelSenzorService, RainSenzorService, SwitchService, TempSensorService, UmiditySensorService, ToxicGasSensorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

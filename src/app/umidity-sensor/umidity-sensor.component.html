@@ -1,1 +1,9 @@
-<h1> Humidity Sensor </h1>
+<h1 class="italic-red">Umidity sensor</h1>
+
+<h1 class="bold-blue">{{ sensorLastValue }}</h1>
+
+<img *ngIf="+sensorLastValue < 40" src="/assets/images/umiditate1.jpeg" />
+
+<img *ngIf="+sensorLastValue >= 40 && +sensorLastValue <= 50" src="/assets/images/umiditate2.jpeg" />
+
+<img *ngIf="+sensorLastValue >= 50" src="/assets/images/umiditate3.jpeg" />

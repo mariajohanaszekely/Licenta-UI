@@ -1,1 +1,9 @@
-<h1> Temp sensor </h1>
+<h1 class="italic-red">Temperature sensor</h1>
+
+<h1 class="bold-blue">{{ sensorLastValue }}</h1>
+
+<img *ngIf="+sensorLastValue < 10" src="/assets/images/temperature-3.jpg" />
+
+<img *ngIf="+sensorLastValue >= 10 && +sensorLastValue <= 20" src="/assets/images/temperature-2.jpg" />
+
+<img *ngIf="+sensorLastValue >= 20" src="/assets/images/temperature-1.jpg" />
