@@ -6,10 +6,10 @@ import { SwitchModel } from './switch.model';
 @Component({
   selector: 'app-switch',
   templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.css']
+  styleUrls: ['./switch.component.css'],
 })
 export class SwitchComponent implements OnInit {
-  constructor(private switchService: SwitchService) { }
+  constructor(private switchService: SwitchService) {}
 
   public switchLastValue: string;
 
@@ -17,17 +17,14 @@ export class SwitchComponent implements OnInit {
     this.getDataFromSwitch();
   }
 
-  public getDataFromSwitch() {
-    this.switchService
-      .getSwitchData()
-      .subscribe((data) => {
-        let switchValues: string[] = [];
+  public getDataFromSwitch(): void {
+    this.switchService.getSwitchData().subscribe((sensorData) => {
+      let switchValues: string[] = [];
 
-        data.feeds.forEach((feed: SwitchModel) => {
-          switchValues.push(feed.field5);
-        });
-        this.switchLastValue =
-        switchValues[switchValues.length - 1];
+      sensorData.feeds.forEach((feed: SwitchModel) => {
+        switchValues.push(feed.field5);
       });
+      this.switchLastValue = switchValues[switchValues.length - 1];
+    });
   }
 }

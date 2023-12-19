@@ -1,5 +1,6 @@
-<h1 class="italic-red">Toxic gas sensor</h1>
+<h1>Alert ! There are toxic gases in the car</h1>
 
-<h1 class="bold-blue">{{ sensorLastValue }}</h1>
-
-<img *ngIf="+sensorLastValue > 0" src="/assets/images/toxic-gas-in-car.jpg" />
+<img
+  *ngIf="+toxicGasSensorLastValue > 0"
+  src="/assets/images/toxic-gas-in-car.jpg"
+/>

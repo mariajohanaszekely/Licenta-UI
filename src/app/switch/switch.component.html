@@ -1,7 +1,11 @@
-<h1 class="italic-red">Car closed/opened - switch</h1>
+<div class="container">
+  <div *ngIf="+switchLastValue === 0">
+    <h1>The door is closed</h1>
+    <img src="/assets/images/car-closed.jpg" />
+  </div>
 
-<h1 class="bold-blue">{{ switchLastValue }}</h1>
-
-<img *ngIf="+switchLastValue === 0" src="/assets/images/car-closed.jpg" />
-
-<img *ngIf="+switchLastValue === 1" src="/assets/images/car-opened.png" />
+  <div *ngIf="+switchLastValue === 1">
+    <h1>!! The door is opened !!</h1>
+    <img src="/assets/images/car-opened.png" />
+  </div>
+</div>

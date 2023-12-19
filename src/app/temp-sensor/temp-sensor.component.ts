@@ -5,28 +5,25 @@ import { TempSensorModel } from './temp-sensor.model';
 @Component({
   selector: 'app-temp-sensor',
   templateUrl: './temp-sensor.component.html',
-  styleUrls: ['./temp-sensor.component.css']
+  styleUrls: ['./temp-sensor.component.css'],
 })
 export class TempSensorComponent implements OnInit {
-  constructor(private tempSensorService: TempSensorService) { }
+  constructor(private tempSensorService: TempSensorService) {}
 
-  public sensorLastValue: string;
+  public tempSensorLastValue: string;
 
   ngOnInit(): void {
-    this.getDataFromSwitch();
+    this.getDataFromTempSensor();
   }
 
-  public getDataFromSwitch() {
-    this.tempSensorService
-      .getTempSensorData()
-      .subscribe((data) => {
-        let sensorValues: string[] = [];
+  public getDataFromTempSensor(): void {
+    this.tempSensorService.getTempSensorData().subscribe((sensorData) => {
+      let sensorValues: string[] = [];
 
-        data.feeds.forEach((feed: TempSensorModel) => {
-          sensorValues.push(feed.field1);
-        });
-        this.sensorLastValue =
-          sensorValues[sensorValues.length - 1];
+      sensorData.feeds.forEach((feed: TempSensorModel) => {
+        sensorValues.push(feed.field1);
       });
+      this.tempSensorLastValue = sensorValues[sensorValues.length - 1];
+    });
   }
 }

@@ -1,9 +1,18 @@
-<h1 class="italic-red">Gas Level Sensor</h1>
+<div class="container">
+  <h1>Fuel Range</h1>
 
-<h1 class="bold-blue">{{ levelSenzorLastValue }}</h1>
+  <img
+    *ngIf="+levelSensorLastValue < 50"
+    src="/assets/images/fuel-range-1.png"
+  />
 
-<img *ngIf="+levelSenzorLastValue === 0" src="/assets/images/fuel-range-1.png" />
+  <img
+    *ngIf="+levelSensorLastValue >= 50 && +levelSensorLastValue <= 500"
+    src="/assets/images/fuel-range-2.png"
+  />
 
-<img *ngIf="+levelSenzorLastValue > 0 && +levelSenzorLastValue <= 500" src="/assets/images/fuel-range-2.png" />
-
-<img *ngIf="+levelSenzorLastValue >= 1000" src="/assets/images/fuel-range-3.png" />
+  <img
+    *ngIf="+levelSensorLastValue >= 500"
+    src="/assets/images/fuel-range-3.png"
+  />
+</div>

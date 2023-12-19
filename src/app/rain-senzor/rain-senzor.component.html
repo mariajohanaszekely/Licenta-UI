@@ -1,13 +1,30 @@
-<h1 class="italic-red">Rain Sensor</h1>
+<div class="container">
+  <h1>Wipers movement</h1>
 
-<h1 class="bold-blue">{{ levelSenzorLastValue }}</h1>
+  <img src="/assets/images/wipers.jpg" />
 
-<h1 style="color:rgb(0, 0, 0)" *ngIf="+levelSenzorLastValue > 4000">OFF</h1>
+  <h1 style="color: rgb(0, 0, 0)" *ngIf="+rainSensorLastValue > 4000">OFF</h1>
 
-<h1 style="color:blue" *ngIf="+levelSenzorLastValue <= 4000 && +levelSenzorLastValue >= 3000">LOW</h1>
+  <h1
+    style="color: blue"
+    *ngIf="+rainSensorLastValue <= 4000 && +rainSensorLastValue >= 3000"
+  >
+    LOW
+  </h1>
 
-<h1 style="color:blueviolet" *ngIf="+levelSenzorLastValue <= 3000 && +levelSenzorLastValue >= 2000">MODERATE</h1>
+  <h1
+    style="color: blueviolet"
+    *ngIf="+rainSensorLastValue <= 3000 && +rainSensorLastValue >= 2000"
+  >
+    MODERATE
+  </h1>
 
-<h1 style="color:chocolate" *ngIf="+levelSenzorLastValue <= 2000 && +levelSenzorLastValue >= 1000">HIGH</h1>
+  <h1
+    style="color: chocolate"
+    *ngIf="+rainSensorLastValue <= 2000 && +rainSensorLastValue >= 1000"
+  >
+    HIGH
+  </h1>
 
-<h1 style="color:red" *ngIf="+levelSenzorLastValue <= 1000">VERY HIGH</h1>
+  <h1 style="color: red" *ngIf="+rainSensorLastValue <= 1000">VERY HIGH</h1>
+</div>

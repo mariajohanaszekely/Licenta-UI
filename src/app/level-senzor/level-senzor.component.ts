@@ -1,32 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { LevelSenzorService } from './level-senzor.service';
-import { LevelSenzorModel } from './level-senzor.model';
+import { LevelSensorService } from './level-senzor.service';
+import { LevelSensorModel } from './level-senzor.model';
 
 @Component({
   selector: 'app-level-senzor',
   templateUrl: './level-senzor.component.html',
-  styleUrls: ['./level-senzor.component.css']
+  styleUrls: ['./level-senzor.component.css'],
 })
-export class LevelSenzorComponent implements OnInit {
-  constructor(private levelSenzorService: LevelSenzorService) { }
+export class LevelSensorComponent implements OnInit {
+  constructor(private levelSensorService: LevelSensorService) {}
 
-  public levelSenzorLastValue: string;
+  public levelSensorLastValue: string;
 
   ngOnInit(): void {
     this.getDataFromLevelSensor();
   }
 
-  public getDataFromLevelSensor() {
-    this.levelSenzorService
-      .getLevelSenzorData()
-      .subscribe((senzorData) => {
-        let levelSenzorValues: string[] = [];
+  public getDataFromLevelSensor(): void {
+    this.levelSensorService.getLevelSensorData().subscribe((sensorData) => {
+      let levelSensorValues: string[] = [];
 
-        senzorData.feeds.forEach((feed: LevelSenzorModel) => {
-          levelSenzorValues.push(feed.field3);
-        });
-        this.levelSenzorLastValue =
-          levelSenzorValues[levelSenzorValues.length - 1];
+      sensorData.feeds.forEach((feed: LevelSensorModel) => {
+        levelSensorValues.push(feed.field3);
       });
+      this.levelSensorLastValue =
+        levelSensorValues[levelSensorValues.length - 1];
+    });
   }
 }

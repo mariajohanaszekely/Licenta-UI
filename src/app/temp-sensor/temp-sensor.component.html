@@ -1,9 +1,19 @@
-<h1 class="italic-red">Temperature sensor</h1>
+<div class="container">
+  <h1>Car Temperature [°C] :</h1>
+  <h1>{{ tempSensorLastValue }}</h1>
 
-<h1 class="bold-blue">{{ sensorLastValue }}</h1>
+  <img
+    *ngIf="+tempSensorLastValue < 10"
+    src="/assets/images/temperature-3.jpg"
+  />
 
-<img *ngIf="+sensorLastValue < 10" src="/assets/images/temperature-3.jpg" />
+  <img
+    *ngIf="+tempSensorLastValue >= 10 && +tempSensorLastValue <= 20"
+    src="/assets/images/temperature-2.jpg"
+  />
 
-<img *ngIf="+sensorLastValue >= 10 && +sensorLastValue <= 20" src="/assets/images/temperature-2.jpg" />
-
-<img *ngIf="+sensorLastValue >= 20" src="/assets/images/temperature-1.jpg" />
+  <img
+    *ngIf="+tempSensorLastValue >= 20"
+    src="/assets/images/temperature-1.jpg"
+  />
+</div>
