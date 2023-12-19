@@ -2,24 +2,17 @@
   <h1>Car Humidity [%RH] :</h1>
   <h1>{{ humiditySensorLastValue }}</h1>
 
-  <img
-    *ngIf="+humiditySensorLastValue < 40"
-    src="/assets/images/humidity1.png"
-  />
+  <img *ngIf="+humiditySensorLastValue < 40" src="/assets/images/humidity1.png" />
+  <img style="width: 70px; height: 70px; position: absolute; margin-top: 100px;" *ngIf="+humiditySensorLastValue < 40"
+    src="/assets/images/umiditate1.jpeg" />
 
-  <img style="width: 100px; height: 100px; position: absolute; margin-top: 35px;"
-    *ngIf="+humiditySensorLastValue < 40"
-    src="/assets/images/umiditate1.jpeg"
-  />
-  
 
-  <img
-    *ngIf="+humiditySensorLastValue >= 40 && +humiditySensorLastValue <= 50"
-    src="/assets/images/humidity2.png"
-  />
+  <img *ngIf="+humiditySensorLastValue >= 40 && +humiditySensorLastValue <= 50" src="/assets/images/humidity2.png" />
+  <img style="width: 70px; height: 70px; position: absolute; margin-top: 100px;"
+    *ngIf="+humiditySensorLastValue >= 40 && +humiditySensorLastValue <= 50" src="/assets/images/umiditate2.jpeg" />
 
-  <img
-    *ngIf="+humiditySensorLastValue >= 50"
-    src="/assets/images/humidity3.png"
-  />
+  <img *ngIf="+humiditySensorLastValue >= 50" src="/assets/images/humidity3.png" />
+  <img style="width: 70px; height: 70px; position: absolute; margin-top: 100px;" *ngIf="+humiditySensorLastValue >= 50"
+    src="/assets/images/umiditate3.jpeg" />
+
 </div>
