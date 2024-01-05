@@ -35,6 +35,9 @@ export class ToxicGasSensorComponent implements OnInit {
   }
 
   public openGraphDialog(templateRef: TemplateRef<any>) {
-    this.dialog.open(templateRef);
+    this.dialog.open(templateRef, {
+      width: 'auto',
+      height: '350px',
+    });
   }
 }
