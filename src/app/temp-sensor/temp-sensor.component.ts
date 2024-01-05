@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { TempSensorService } from './temp-sensor.service';
 import { TempSensorModel } from './temp-sensor.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-temp-sensor',
@@ -8,11 +9,14 @@ import { TempSensorModel } from './temp-sensor.model';
   styleUrls: ['./temp-sensor.component.css'],
 })
 export class TempSensorComponent implements OnInit {
-  constructor(private tempSensorService: TempSensorService) {}
+  constructor(
+    private tempSensorService: TempSensorService,
+    private dialog: MatDialog
+  ) {}
 
   public tempSensorLastValue: string;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getDataFromTempSensor();
   }
 
@@ -25,5 +29,9 @@ export class TempSensorComponent implements OnInit {
       });
       this.tempSensorLastValue = sensorValues[sensorValues.length - 1];
     });
+  }
+
+  public openGraphDialog(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { RainSensorService } from './rain-senzor.service';
 import { RainSensorModel } from './rain-senzor.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-rain-senzor',
@@ -8,7 +9,10 @@ import { RainSensorModel } from './rain-senzor.model';
   styleUrls: ['./rain-senzor.component.css'],
 })
 export class RainSensorComponent implements OnInit {
-  constructor(private rainSensorService: RainSensorService) {}
+  constructor(
+    private rainSensorService: RainSensorService,
+    private dialog: MatDialog
+  ) {}
 
   public rainSensorLastValue: string;
 
@@ -26,5 +30,9 @@ export class RainSensorComponent implements OnInit {
       this.rainSensorLastValue =
         levelSensorValues[levelSensorValues.length - 1];
     });
+  }
+
+  public openGraphDialog(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { SwitchService } from './switch.service';
 import { SwitchModel } from './switch.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-switch',
@@ -9,7 +10,10 @@ import { SwitchModel } from './switch.model';
   styleUrls: ['./switch.component.css'],
 })
 export class SwitchComponent implements OnInit {
-  constructor(private switchService: SwitchService) {}
+  constructor(
+    private switchService: SwitchService,
+    private dialog: MatDialog
+  ) {}
 
   public switchLastValue: string;
 
@@ -26,5 +30,9 @@ export class SwitchComponent implements OnInit {
       });
       this.switchLastValue = switchValues[switchValues.length - 1];
     });
+  }
+
+  public openGraphDialog(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 }

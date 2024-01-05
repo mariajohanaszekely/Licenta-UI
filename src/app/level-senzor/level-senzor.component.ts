@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { LevelSensorService } from './level-senzor.service';
 import { LevelSensorModel } from './level-senzor.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-level-senzor',
@@ -8,7 +9,10 @@ import { LevelSensorModel } from './level-senzor.model';
   styleUrls: ['./level-senzor.component.css'],
 })
 export class LevelSensorComponent implements OnInit {
-  constructor(private levelSensorService: LevelSensorService) {}
+  constructor(
+    private levelSensorService: LevelSensorService,
+    private dialog: MatDialog
+  ) {}
 
   public levelSensorLastValue: string;
 
@@ -26,5 +30,9 @@ export class LevelSensorComponent implements OnInit {
       this.levelSensorLastValue =
         levelSensorValues[levelSensorValues.length - 1];
     });
+  }
+
+  public openGraphDialog(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 }

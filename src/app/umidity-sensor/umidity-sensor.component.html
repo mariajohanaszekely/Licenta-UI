@@ -2,17 +2,52 @@
   <h1>Car Humidity [%RH] :</h1>
   <h1>{{ humiditySensorLastValue }}</h1>
 
-  <img *ngIf="+humiditySensorLastValue < 40" src="/assets/images/humidity1.png" />
-  <img style="width: 70px; height: 70px; position: absolute; margin-top: 100px;" *ngIf="+humiditySensorLastValue < 40"
-    src="/assets/images/umiditate1.jpeg" />
+  <img
+    *ngIf="+humiditySensorLastValue < 40"
+    src="/assets/images/humidity1.png"
+  />
+  <img
+    style="width: 70px; height: 70px; position: absolute; margin-top: 100px"
+    *ngIf="+humiditySensorLastValue < 40"
+    src="/assets/images/umiditate1.jpeg"
+  />
 
+  <img
+    *ngIf="+humiditySensorLastValue >= 40 && +humiditySensorLastValue <= 50"
+    src="/assets/images/humidity2.png"
+  />
+  <img
+    style="width: 70px; height: 70px; position: absolute; margin-top: 100px"
+    *ngIf="+humiditySensorLastValue >= 40 && +humiditySensorLastValue <= 50"
+    src="/assets/images/umiditate2.jpeg"
+  />
 
-  <img *ngIf="+humiditySensorLastValue >= 40 && +humiditySensorLastValue <= 50" src="/assets/images/humidity2.png" />
-  <img style="width: 70px; height: 70px; position: absolute; margin-top: 100px;"
-    *ngIf="+humiditySensorLastValue >= 40 && +humiditySensorLastValue <= 50" src="/assets/images/umiditate2.jpeg" />
-
-  <img *ngIf="+humiditySensorLastValue >= 50" src="/assets/images/humidity3.png" />
-  <img style="width: 70px; height: 70px; position: absolute; margin-top: 100px;" *ngIf="+humiditySensorLastValue >= 50"
-    src="/assets/images/umiditate3.jpeg" />
-
+  <img
+    *ngIf="+humiditySensorLastValue >= 50"
+    src="/assets/images/humidity3.png"
+  />
+  <img
+    style="width: 70px; height: 70px; position: absolute; margin-top: 100px"
+    *ngIf="+humiditySensorLastValue >= 50"
+    src="/assets/images/umiditate3.jpeg"
+  />
 </div>
+
+<button
+  class="graph-button"
+  mat-stroked-button
+  color="primary"
+  (click)="openGraphDialog(template)"
+>
+  Open graph view
+</button>
+<ng-template #template>
+  <div style="padding: 15px">
+    <iframe
+      width="450"
+      height="260"
+      style="border: 1px solid #cccccc"
+      src="https://thingspeak.com/channels/2354728/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"
+    ></iframe>
+  </div>
+</ng-template>

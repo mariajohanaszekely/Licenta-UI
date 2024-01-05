@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { HumiditySensorService } from './umidity-sensor.service';
 import { HumiditySensorModel } from './umidity-sensor.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-umidity-sensor',
@@ -9,7 +10,10 @@ import { HumiditySensorModel } from './umidity-sensor.model';
   styleUrls: ['./umidity-sensor.component.css'],
 })
 export class HumiditySensorComponent implements OnInit {
-  constructor(private humiditySensorService: HumiditySensorService) {}
+  constructor(
+    private humiditySensorService: HumiditySensorService,
+    private dialog: MatDialog
+  ) {}
 
   public humiditySensorLastValue: string;
 
@@ -18,13 +22,19 @@ export class HumiditySensorComponent implements OnInit {
   }
 
   public getDataFromHumiditySensor(): void {
-    this.humiditySensorService.getHumiditySensorData().subscribe((sensorData) => {
-      let sensorValues: string[] = [];
+    this.humiditySensorService
+      .getHumiditySensorData()
+      .subscribe((sensorData) => {
+        let sensorValues: string[] = [];
 
-      sensorData.feeds.forEach((feed: HumiditySensorModel) => {
-        sensorValues.push(feed.field2);
+        sensorData.feeds.forEach((feed: HumiditySensorModel) => {
+          sensorValues.push(feed.field2);
+        });
+        this.humiditySensorLastValue = sensorValues[sensorValues.length - 1];
       });
-      this.humiditySensorLastValue = sensorValues[sensorValues.length - 1];
-    });
+  }
+
+  public openGraphDialog(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 }

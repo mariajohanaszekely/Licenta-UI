@@ -15,3 +15,8 @@ img {
 h1 {
     margin-bottom: 10px;
 }
+
+.graph-button {
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 4px; /* Menține marginile butonului rotunjite */
+}
