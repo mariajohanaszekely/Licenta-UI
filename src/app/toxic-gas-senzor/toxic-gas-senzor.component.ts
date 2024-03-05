@@ -25,12 +25,12 @@ export class ToxicGasSensorComponent implements OnInit {
     this.toxicGasSensorService
       .getToxicGasSensorData()
       .subscribe((sensorData) => {
-        let sensorValues: string[] = [];
+        let toxicGasSensorValues: string[] = [];
 
         sensorData.feeds.forEach((feed: ToxicGasSensorModel) => {
-          sensorValues.push(feed.field6);
+          toxicGasSensorValues.push(feed.field6);
         });
-        this.toxicGasSensorLastValue = sensorValues[sensorValues.length - 1];
+        this.toxicGasSensorLastValue = toxicGasSensorValues[toxicGasSensorValues.length - 1];
       });
   }
 

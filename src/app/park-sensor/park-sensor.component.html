@@ -1,0 +1,38 @@
+<div class="container" *ngIf="+parkSensorLastValue === 1">
+  <h1 style="color: red">The car is in drive mode</h1>
+
+  <img src="/assets/images/DriveMode.png" />
+</div>
+
+<div class="container" *ngIf="+parkSensorLastValue === 0">
+  <h1 style="color: green">The car is in park mode</h1>
+
+  <img src="/assets/images/ParkMode.jpg" />
+</div>
+
+<button
+  class="graph-button"
+  mat-stroked-button
+  color="primary"
+  (click)="openGraphDialog(template)"
+>
+  Open graph view
+</button>
+<ng-template #template>
+  <div style="padding: 15px">
+    <iframe
+      width="450"
+      height="260"
+      style="border: 1px solid #cccccc"
+      src="https://thingspeak.com/channels/2354728/charts/8?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"
+    ></iframe>
+  </div>
+  <button
+    mat-button
+    class="close-icon"
+    [mat-dialog-close]="true"
+    style="margin-left: 200px"
+  >
+    <mat-icon>close</mat-icon><span>Close</span>
+  </button>
+</ng-template>

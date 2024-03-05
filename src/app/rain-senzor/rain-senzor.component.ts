@@ -22,13 +22,13 @@ export class RainSensorComponent implements OnInit {
 
   public getDataFromRainSensor(): void {
     this.rainSensorService.getRainSensorData().subscribe((sensorData) => {
-      let levelSensorValues: string[] = [];
+      let rainSensorValues: string[] = [];
 
       sensorData.feeds.forEach((feed: RainSensorModel) => {
-        levelSensorValues.push(feed.field4);
+        rainSensorValues.push(feed.field4);
       });
       this.rainSensorLastValue =
-        levelSensorValues[levelSensorValues.length - 1];
+        rainSensorValues[rainSensorValues.length - 1];
     });
   }
 

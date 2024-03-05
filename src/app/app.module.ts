@@ -16,7 +16,10 @@ import { TempSensorService } from './temp-sensor/temp-sensor.service';
 import { HumiditySensorService } from './umidity-sensor/umidity-sensor.service';
 import { ToxicGasSensorService } from './toxic-gas-senzor/toxic-gas-senzor.service';
 import { AngularMaterialModule } from './shared/angular-material.module';
-import { UvIndexMapHelper } from './shared/sensors-data.helper';
+import { AccelerationSensorComponent } from './acceleration-sensor/acceleration-sensor.component';
+import { AccelerationSensorService } from './acceleration-sensor/acceleration-sensor.service';
+import { ParkSensorComponent } from './park-sensor/park-sensor.component';
+import { ParkSensorService } from './park-sensor/park-sensor.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { UvIndexMapHelper } from './shared/sensors-data.helper';
     TempSensorComponent,
     HumiditySensorComponent,
     SwitchComponent,
+    AccelerationSensorComponent,
+    ParkSensorComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AngularMaterialModule],
   providers: [
@@ -36,7 +41,8 @@ import { UvIndexMapHelper } from './shared/sensors-data.helper';
     TempSensorService,
     HumiditySensorService,
     ToxicGasSensorService,
-    UvIndexMapHelper
+    AccelerationSensorService,
+    ParkSensorService,
   ],
   bootstrap: [AppComponent],
 })

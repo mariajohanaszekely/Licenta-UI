@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class LevelSensorService {
+export class AccelerationSensorService {
   constructor(private http: HttpClient) {}
 
-  public getLevelSensorData(): Observable<any> {
+  public getAccelerationSensorData(): Observable<any> {
     return this.http.get(
-      'https://api.thingspeak.com/channels/2354728/field/3.json'
+      'https://api.thingspeak.com/channels/2354728/field/7.json'
     );
   }
 }

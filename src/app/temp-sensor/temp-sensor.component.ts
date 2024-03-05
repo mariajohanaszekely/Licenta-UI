@@ -22,12 +22,12 @@ export class TempSensorComponent implements OnInit {
 
   public getDataFromTempSensor(): void {
     this.tempSensorService.getTempSensorData().subscribe((sensorData) => {
-      let sensorValues: string[] = [];
+      let tempSensorValues: string[] = [];
 
       sensorData.feeds.forEach((feed: TempSensorModel) => {
-        sensorValues.push(feed.field1);
+        tempSensorValues.push(feed.field1);
       });
-      this.tempSensorLastValue = sensorValues[sensorValues.length - 1];
+      this.tempSensorLastValue = tempSensorValues[tempSensorValues.length - 1];
     });
   }
 

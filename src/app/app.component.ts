@@ -13,6 +13,10 @@ import { ToxicGasSensorModel } from './toxic-gas-senzor/toxic-gas-senzor.model';
 import { HumiditySensorModel } from './umidity-sensor/umidity-sensor.model';
 
 import * as XLSX from 'xlsx';
+import { AccelerationSensorModel } from './acceleration-sensor/acceleration-sensor.model';
+import { AccelerationSensorService } from './acceleration-sensor/acceleration-sensor.service';
+import { ParkSensorService } from './park-sensor/park-sensor.service';
+import { ParkSensorModel } from './park-sensor/park-sensor.model';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +25,16 @@ import * as XLSX from 'xlsx';
 })
 export class AppComponent implements OnInit {
   public lastUpdate: Date;
+  public isLoading: boolean = false;
+
+  private levelSensorLastValue: string;
+  private rainSensorLastValue: string;
+  private switchLastValue: string;
+  private tempSensorLastValue: string;
+  private toxicGasSensorLastValue: string;
+  private humiditySensorLastValue: string;
+  private accelerationSensorLastValue: string;
+  private parkSensorLastValue: string;
 
   constructor(
     private levelSensorService: LevelSensorService,
@@ -28,29 +42,22 @@ export class AppComponent implements OnInit {
     private switchService: SwitchService,
     private tempSensorService: TempSensorService,
     private toxicGasSensorService: ToxicGasSensorService,
-    private humiditySensorService: HumiditySensorService
+    private humiditySensorService: HumiditySensorService,
+    private accelerationSensorService: AccelerationSensorService,
+    private parkSensorService: ParkSensorService
   ) {}
 
   ngOnInit(): void {
-    this.getLastUpdateDateFromSensors();
-
-    this.getDataFromLevelSensor();
-    this.getDataFromRainSensor();
-    this.getDataFromSwitch();
-    this.getDataFromTempSensor();
-    this.getToxicGasSensorData();
-    this.getDataFromHumiditySensor();
+    this.initializeSensorsData();
   }
 
   public refreshData(): void {
-    window.location.reload();
-  }
+    this.isLoading = true;
 
-  public getLastUpdateDateFromSensors(): void {
-    this.levelSensorService.getLevelSensorData().subscribe((sensorData) => {
-      this.lastUpdate =
-        sensorData.feeds[sensorData.feeds.length - 1].created_at;
-    });
+    setTimeout(() => {
+      this.isLoading = false;
+      window.location.reload();
+    }, 1000);
   }
 
   public ExportSensorsDataToExcel(): void {
@@ -103,6 +110,16 @@ export class AppComponent implements OnInit {
           : 'There are no toxic gases in the car',
       ],
       ['Humidity in car [%RH] :', this.humiditySensorLastValue],
+      [
+        'Accident :',
+        this.accelerationSensorLastValue === '0'
+          ? 'No accident reported'
+          : 'There is an accident',
+      ],
+      [
+        'The car is :',
+        this.parkSensorLastValue === '0' ? 'In park mode' : 'In drive mode',
+      ],
     ];
 
     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(data);
@@ -111,14 +128,27 @@ export class AppComponent implements OnInit {
     XLSX.writeFile(wb, 'sensors_data.xlsx');
   }
 
-  public levelSensorLastValue: string;
-  public rainSensorLastValue: string;
-  public switchLastValue: string;
-  public tempSensorLastValue: string;
-  public toxicGasSensorLastValue: string;
-  public humiditySensorLastValue: string;
+  private initializeSensorsData() {
+    this.getLastUpdateDateFromSensors();
 
-  public getDataFromLevelSensor() {
+    this.getDataFromLevelSensor();
+    this.getDataFromRainSensor();
+    this.getDataFromSwitch();
+    this.getDataFromTempSensor();
+    this.getToxicGasSensorData();
+    this.getDataFromHumiditySensor();
+    this.getDataFromAccelerationSensor();
+    this.getDataFromParkSensor();
+  }
+
+  private getLastUpdateDateFromSensors(): void {
+    this.levelSensorService.getLevelSensorData().subscribe((sensorData) => {
+      this.lastUpdate =
+        sensorData.feeds[sensorData.feeds.length - 1].created_at;
+    });
+  }
+
+  private getDataFromLevelSensor() {
     this.levelSensorService.getLevelSensorData().subscribe((sensorData) => {
       let levelSensorValues: string[] = [];
 
@@ -130,7 +160,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public getDataFromRainSensor(): void {
+  private getDataFromRainSensor(): void {
     this.rainSensorService.getRainSensorData().subscribe((sensorData) => {
       let rainSensorValues: string[] = [];
 
@@ -141,7 +171,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public getDataFromSwitch(): void {
+  private getDataFromSwitch(): void {
     this.switchService.getSwitchData().subscribe((sensorData) => {
       let switchValues: string[] = [];
 
@@ -152,7 +182,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public getDataFromTempSensor(): void {
+  private getDataFromTempSensor(): void {
     this.tempSensorService.getTempSensorData().subscribe((sensorData) => {
       let tempSensorValues: string[] = [];
 
@@ -163,7 +193,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public getToxicGasSensorData(): void {
+  private getToxicGasSensorData(): void {
     this.toxicGasSensorService
       .getToxicGasSensorData()
       .subscribe((sensorData) => {
@@ -177,7 +207,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  public getDataFromHumiditySensor(): void {
+  private getDataFromHumiditySensor(): void {
     this.humiditySensorService
       .getHumiditySensorData()
       .subscribe((sensorData) => {
@@ -189,5 +219,30 @@ export class AppComponent implements OnInit {
         this.humiditySensorLastValue =
           humiditySensorValues[humiditySensorValues.length - 1];
       });
+  }
+
+  private getDataFromAccelerationSensor(): void {
+    this.accelerationSensorService
+      .getAccelerationSensorData()
+      .subscribe((sensorData) => {
+        let accelerationSensorValues: string[] = [];
+
+        sensorData.feeds.forEach((feed: AccelerationSensorModel) => {
+          accelerationSensorValues.push(feed.field7);
+        });
+        this.accelerationSensorLastValue =
+          accelerationSensorValues[accelerationSensorValues.length - 1];
+      });
+  }
+
+  private getDataFromParkSensor(): void {
+    this.parkSensorService.getParkSensorData().subscribe((sensorData) => {
+      let parkSensorValues: string[] = [];
+
+      sensorData.feeds.forEach((feed: ParkSensorModel) => {
+        parkSensorValues.push(feed.field8);
+      });
+      this.parkSensorLastValue = parkSensorValues[parkSensorValues.length - 1];
+    });
   }
 }

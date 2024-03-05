@@ -1,55 +1,74 @@
 <div class="container">
-  <mat-card class="header-container">
-    <mat-card-title
-      >Last update: {{ lastUpdate | date : "medium" }}</mat-card-title
-    >
-    <button
-      mat-stroked-button
-      color="primary"
-      (click)="ExportSensorsDataToExcel()"
-      class="export-button"
-    >
-      <mat-icon>file_download</mat-icon>Export the latest data as an Excel file
-    </button>
-    <button
-      mat-stroked-button
-      color="primary"
-      (click)="refreshData()"
-      class="refresh-button"
-    >
-      <mat-icon>refresh</mat-icon>Refresh Data
-    </button>
-  </mat-card>
-
-  <mat-card class="image-container">
-    <img src="/assets/images/car.jpg" class="center-image" />
-  </mat-card>
-
-  <div class="component-row">
-    <mat-card class="component">
-      <app-temp-sensor></app-temp-sensor>
-    </mat-card>
-
-    <mat-card class="component">
-      <app-level-senzor></app-level-senzor>
-    </mat-card>
-
-    <mat-card class="component">
-      <app-umidity-sensor></app-umidity-sensor>
-    </mat-card>
-  </div>
-
-  <div class="component-row">
-    <mat-card class="component">
-      <app-toxic-gas-senzor></app-toxic-gas-senzor>
-    </mat-card>
-
-    <mat-card class="component">
+  <div class="primary-container" *ngIf="!isLoading">
+    <mat-card class="left-side-container">
       <app-switch></app-switch>
     </mat-card>
-
-    <mat-card class="component">
-      <app-rain-senzor></app-rain-senzor>
+    <div class="middle-container">
+      <mat-card class="header-container">
+        <mat-card-title
+          >Last update: {{ lastUpdate | date : "medium" }}</mat-card-title
+        >
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="ExportSensorsDataToExcel()"
+          class="export-button"
+        >
+          <mat-icon>file_download</mat-icon>Export the latest data as an Excel
+          file
+        </button>
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="refreshData()"
+          class="refresh-button"
+        >
+          <mat-icon>refresh</mat-icon>Refresh Data
+        </button>
+      </mat-card>
+    </div>
+    <mat-card class="right-side-container">
+      <app-acceleration-sensor></app-acceleration-sensor>
     </mat-card>
   </div>
+
+  <mat-spinner
+    style="margin-top: 50px"
+    *ngIf="isLoading"
+    diameter="150"
+  ></mat-spinner>
+
+  <ng-container *ngIf="!isLoading">
+    <mat-card class="image-container">
+      <img src="/assets/images/car.jpg" class="center-image" />
+    </mat-card>
+
+    <div class="component-row">
+      <mat-card class="component">
+        <app-temp-sensor></app-temp-sensor>
+      </mat-card>
+
+      <mat-card class="component">
+        <app-level-senzor></app-level-senzor>
+      </mat-card>
+
+      <mat-card class="component">
+        <app-umidity-sensor></app-umidity-sensor>
+      </mat-card>
+    </div>
+
+    <div class="component-row">
+      <mat-card class="component">
+        <app-toxic-gas-senzor></app-toxic-gas-senzor>
+      </mat-card>
+
+      <mat-card class="component">
+        <app-park-sensor></app-park-sensor>
+      </mat-card>
+
+      <mat-card class="component">
+        <app-rain-senzor></app-rain-senzor>
+      </mat-card>
+    </div>
+  </ng-container>
 </div>

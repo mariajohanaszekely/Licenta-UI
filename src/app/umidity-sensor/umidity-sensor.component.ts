@@ -25,12 +25,12 @@ export class HumiditySensorComponent implements OnInit {
     this.humiditySensorService
       .getHumiditySensorData()
       .subscribe((sensorData) => {
-        let sensorValues: string[] = [];
+        let humiditySensorValues: string[] = [];
 
         sensorData.feeds.forEach((feed: HumiditySensorModel) => {
-          sensorValues.push(feed.field2);
+          humiditySensorValues.push(feed.field2);
         });
-        this.humiditySensorLastValue = sensorValues[sensorValues.length - 1];
+        this.humiditySensorLastValue = humiditySensorValues[humiditySensorValues.length - 1];
       });
   }
 
