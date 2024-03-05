@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LevelSensorService } from './level-senzor/level-senzor.service';
 import { RainSensorService as RainSensorService } from './rain-senzor/rain-senzor.service';
 import { SwitchService } from './switch/switch.service';
@@ -29,11 +29,11 @@ export class AppComponent implements OnInit {
 
   private levelSensorLastValue: string;
   private rainSensorLastValue: string;
-  private switchLastValue: string;
+  public switchLastValue: string;
   private tempSensorLastValue: string;
   private toxicGasSensorLastValue: string;
   private humiditySensorLastValue: string;
-  private accelerationSensorLastValue: string;
+  public accelerationSensorLastValue: string;
   private parkSensorLastValue: string;
 
   constructor(

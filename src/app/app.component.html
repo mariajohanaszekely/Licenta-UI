@@ -1,6 +1,6 @@
 <div class="container">
   <div class="primary-container" *ngIf="!isLoading">
-    <mat-card class="left-side-container">
+    <mat-card class="left-side-container" *ngIf="+this.switchLastValue === 1">
       <app-switch></app-switch>
     </mat-card>
     <div class="middle-container">
@@ -27,7 +27,10 @@
         </button>
       </mat-card>
     </div>
-    <mat-card class="right-side-container">
+    <mat-card
+      class="right-side-container"
+      *ngIf="+this.accelerationSensorLastValue === 1"
+    >
       <app-acceleration-sensor></app-acceleration-sensor>
     </mat-card>
   </div>
