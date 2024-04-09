@@ -13,7 +13,7 @@ export class ToxicGasSensorComponent implements OnInit {
   constructor(
     private toxicGasSensorService: ToxicGasSensorService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   public toxicGasSensorLastValue: string;
 
@@ -31,7 +31,7 @@ export class ToxicGasSensorComponent implements OnInit {
           toxicGasSensorValues.push(feed.field6);
         });
         this.toxicGasSensorLastValue = toxicGasSensorValues[toxicGasSensorValues.length - 1];
-      });
+      })
   }
 
   public openGraphDialog(templateRef: TemplateRef<any>) {

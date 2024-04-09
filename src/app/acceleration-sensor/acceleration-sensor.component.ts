@@ -12,7 +12,7 @@ export class AccelerationSensorComponent implements OnInit {
   constructor(
     private accelerationSensorService: AccelerationSensorService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   public accelerationSensorLastValue: string;
 
@@ -31,6 +31,7 @@ export class AccelerationSensorComponent implements OnInit {
         });
         this.accelerationSensorLastValue =
           accelerationSensorValues[accelerationSensorValues.length - 1];
+
       });
   }
 

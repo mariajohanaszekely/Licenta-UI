@@ -1,45 +1,28 @@
-<div class="container">
+<div class="container" style="background-color: rgb(226, 222, 222);">
   <div class="primary-container" *ngIf="!isLoading">
     <mat-card class="left-side-container" *ngIf="+this.switchLastValue === 1">
       <app-switch></app-switch>
     </mat-card>
-    <div class="middle-container">
+    <div class="middle-container" [ngStyle]="
+    { 'margin-right': (+switchLastValue===1 && +accelerationSensorLastValue!==1) ? '550px' : null, 'margin-left': (+accelerationSensorLastValue===1 && +switchLastValue!==1) ? '550px' : null }
+    ">
       <mat-card class="header-container">
-        <mat-card-title
-          >Last update: {{ lastUpdate | date : "medium" }}</mat-card-title
-        >
-        <button
-          mat-stroked-button
-          color="primary"
-          (click)="ExportSensorsDataToExcel()"
-          class="export-button"
-        >
+        <mat-card-title>Last update: {{ lastUpdate | date : "medium" }}</mat-card-title>
+        <button mat-stroked-button color="primary" (click)="ExportSensorsDataToExcel()" class="export-button">
           <mat-icon>file_download</mat-icon>Export the latest data as an Excel
           file
         </button>
-        <button
-          mat-stroked-button
-          color="primary"
-          (click)="refreshData()"
-          class="refresh-button"
-        >
+        <button mat-stroked-button color="primary" (click)="refreshData()" class="refresh-button">
           <mat-icon>refresh</mat-icon>Refresh Data
         </button>
       </mat-card>
     </div>
-    <mat-card
-      class="right-side-container"
-      *ngIf="+this.accelerationSensorLastValue === 1"
-    >
+    <mat-card class="right-side-container" *ngIf="+this.accelerationSensorLastValue === 1">
       <app-acceleration-sensor></app-acceleration-sensor>
     </mat-card>
   </div>
 
-  <mat-spinner
-    style="margin-top: 50px"
-    *ngIf="isLoading"
-    diameter="150"
-  ></mat-spinner>
+  <mat-spinner style="margin-top: 50px" *ngIf="isLoading" diameter="150"></mat-spinner>
 
   <ng-container *ngIf="!isLoading">
     <mat-card class="image-container">

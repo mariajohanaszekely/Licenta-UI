@@ -13,7 +13,7 @@ export class SwitchComponent implements OnInit {
   constructor(
     private switchService: SwitchService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   public switchLastValue: string;
 
@@ -29,6 +29,7 @@ export class SwitchComponent implements OnInit {
         switchValues.push(feed.field5);
       });
       this.switchLastValue = switchValues[switchValues.length - 1];
+
     });
   }
 

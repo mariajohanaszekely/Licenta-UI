@@ -13,7 +13,7 @@ export class HumiditySensorComponent implements OnInit {
   constructor(
     private humiditySensorService: HumiditySensorService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   public humiditySensorLastValue: string;
 
@@ -30,7 +30,8 @@ export class HumiditySensorComponent implements OnInit {
         sensorData.feeds.forEach((feed: HumiditySensorModel) => {
           humiditySensorValues.push(feed.field2);
         });
-        this.humiditySensorLastValue = humiditySensorValues[humiditySensorValues.length - 1];
+        this.humiditySensorLastValue =
+          humiditySensorValues[humiditySensorValues.length - 1];
       });
   }
 

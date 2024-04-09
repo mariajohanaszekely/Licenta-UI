@@ -12,7 +12,7 @@ export class LevelSensorComponent implements OnInit {
   constructor(
     private levelSensorService: LevelSensorService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   public levelSensorLastValue: string;
 

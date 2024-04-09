@@ -12,7 +12,7 @@ export class TempSensorComponent implements OnInit {
   constructor(
     private tempSensorService: TempSensorService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   public tempSensorLastValue: string;
 
@@ -27,7 +27,8 @@ export class TempSensorComponent implements OnInit {
       sensorData.feeds.forEach((feed: TempSensorModel) => {
         tempSensorValues.push(feed.field1);
       });
-      this.tempSensorLastValue = tempSensorValues[tempSensorValues.length - 1];
+      this.tempSensorLastValue =
+        tempSensorValues[tempSensorValues.length - 1];
     });
   }
 

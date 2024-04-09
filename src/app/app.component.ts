@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     private humiditySensorService: HumiditySensorService,
     private accelerationSensorService: AccelerationSensorService,
     private parkSensorService: ParkSensorService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeSensorsData();

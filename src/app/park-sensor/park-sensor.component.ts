@@ -12,7 +12,7 @@ export class ParkSensorComponent implements OnInit {
   constructor(
     private parkSensorService: ParkSensorService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   public parkSensorLastValue: string;
 
@@ -27,7 +27,8 @@ export class ParkSensorComponent implements OnInit {
       sensorData.feeds.forEach((feed: ParkSensorModel) => {
         parkSensorValues.push(feed.field8);
       });
-      this.parkSensorLastValue = '0'
+      this.parkSensorLastValue = parkSensorValues[parkSensorValues.length - 1];
+
     });
   }
 
