@@ -27,8 +27,8 @@ export class TempSensorComponent implements OnInit {
       sensorData.feeds.forEach((feed: TempSensorModel) => {
         tempSensorValues.push(feed.field1);
       });
-      this.tempSensorLastValue =
-        tempSensorValues[tempSensorValues.length - 1];
+      this.tempSensorLastValue = 
+            tempSensorValues[tempSensorValues.length - 1];
     });
   }
 

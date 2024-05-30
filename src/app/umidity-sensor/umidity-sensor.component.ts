@@ -31,7 +31,7 @@ export class HumiditySensorComponent implements OnInit {
           humiditySensorValues.push(feed.field2);
         });
         this.humiditySensorLastValue =
-          humiditySensorValues[humiditySensorValues.length - 1];
+            humiditySensorValues[humiditySensorValues.length - 1];
       });
   }
 
