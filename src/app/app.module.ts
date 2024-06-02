@@ -6,14 +6,14 @@ import { ToxicGasSensorComponent } from './toxic-gas-senzor/toxic-gas-senzor.com
 import { RainSensorComponent } from './rain-senzor/rain-senzor.component';
 import { LevelSensorComponent } from './level-senzor/level-senzor.component';
 import { TempSensorComponent } from './temp-sensor/temp-sensor.component';
-import { HumiditySensorComponent } from './umidity-sensor/umidity-sensor.component';
+import { HumiditySensorComponent } from './humidity-sensor/humidity-sensor.component';
 import { SwitchComponent } from './switch/switch.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LevelSensorService } from './level-senzor/level-senzor.service';
 import { RainSensorService } from './rain-senzor/rain-senzor.service';
 import { SwitchService } from './switch/switch.service';
 import { TempSensorService } from './temp-sensor/temp-sensor.service';
-import { HumiditySensorService } from './umidity-sensor/umidity-sensor.service';
+import { HumiditySensorService } from './humidity-sensor/humidity-sensor.service';
 import { ToxicGasSensorService } from './toxic-gas-senzor/toxic-gas-senzor.service';
 import { AngularMaterialModule } from './shared/angular-material.module';
 import { AccelerationSensorComponent } from './acceleration-sensor/acceleration-sensor.component';

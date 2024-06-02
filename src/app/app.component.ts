@@ -4,13 +4,13 @@ import { RainSensorService as RainSensorService } from './rain-senzor/rain-senzo
 import { SwitchService } from './switch/switch.service';
 import { TempSensorService } from './temp-sensor/temp-sensor.service';
 import { ToxicGasSensorService } from './toxic-gas-senzor/toxic-gas-senzor.service';
-import { HumiditySensorService as HumiditySensorService } from './umidity-sensor/umidity-sensor.service';
+import { HumiditySensorService as HumiditySensorService } from './humidity-sensor/humidity-sensor.service';
 import { LevelSensorModel } from './level-senzor/level-senzor.model';
 import { RainSensorModel as RainSensorModel } from './rain-senzor/rain-senzor.model';
 import { SwitchModel } from './switch/switch.model';
 import { TempSensorModel } from './temp-sensor/temp-sensor.model';
 import { ToxicGasSensorModel } from './toxic-gas-senzor/toxic-gas-senzor.model';
-import { HumiditySensorModel } from './umidity-sensor/umidity-sensor.model';
+import { HumiditySensorModel } from './humidity-sensor/humidity-sensor.model';
 
 import * as XLSX from 'xlsx';
 import { AccelerationSensorModel } from './acceleration-sensor/acceleration-sensor.model';

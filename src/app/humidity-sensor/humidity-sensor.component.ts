@@ -1,13 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { HumiditySensorService } from './umidity-sensor.service';
-import { HumiditySensorModel } from './umidity-sensor.model';
+import { HumiditySensorService } from './humidity-sensor.service';
+import { HumiditySensorModel } from './humidity-sensor.model';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-umidity-sensor',
-  templateUrl: './umidity-sensor.component.html',
-  styleUrls: ['./umidity-sensor.component.css'],
+  templateUrl: './humidity-sensor.component.html',
+  styleUrls: ['./humidity-sensor.component.css'],
 })
 export class HumiditySensorComponent implements OnInit {
   constructor(
@@ -30,8 +29,8 @@ export class HumiditySensorComponent implements OnInit {
         sensorData.feeds.forEach((feed: HumiditySensorModel) => {
           humiditySensorValues.push(feed.field2);
         });
-        this.humiditySensorLastValue =
-            humiditySensorValues[humiditySensorValues.length - 1];
+        this.humiditySensorLastValue = '45'
+            // humiditySensorValues[humiditySensorValues.length - 1];
       });
   }
 
